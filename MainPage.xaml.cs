@@ -1,0 +1,165 @@
+﻿//usings
+#region
+using System;
+using System.IO;
+using System.IO.Compression;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui;
+#endregion
+namespace Launcher
+{
+    public partial class MainPage : ContentPage
+    {
+
+        public MainPage()
+        {
+            InitializeComponent();
+            NavigationPage.SetHasNavigationBar(this, false);
+        }
+        //launch
+        #region
+        private async void Launch_Clicked(object sender, EventArgs e)
+        {
+            string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string mintyFolderPath = Path.Combine(appDataFolder, "minty");
+            string assetsFolderPath = Path.Combine(mintyFolderPath, "MintyGI");
+            string launcherFilePath = Path.Combine(assetsFolderPath, "Launcher.exe");
+            string dllFilePath = Path.Combine(assetsFolderPath, "minty.dll");
+            string zipFilePath = Path.Combine(assetsFolderPath, "minty.zip");
+            string verfilePath = Path.Combine(assetsFolderPath, "version.txt");
+            string serverFileUrl = "https://github.com/rusya222/LauncherVer/releases/download/1.0/version.txt";
+            string zipUrl = "https://github.com/rusya222/LauncherVer/releases/download/1.0/minty.zip";
+
+            if (File.Exists(verfilePath))
+            {
+                bool filesAreSame = await CheckIfFilesAreSameAsync(serverFileUrl, verfilePath);
+                if (filesAreSame)
+                {
+                    if (File.Exists(launcherFilePath))
+                    {
+                        //GI_button.Text = "Launch";
+                        LaunchExecutable(launcherFilePath);
+
+                    }
+                }
+                else
+                {
+                    File.Delete(verfilePath);
+                    File.Delete(launcherFilePath);
+                    File.Delete(dllFilePath);
+                    File.Delete(zipFilePath);
+                    //GI_button.Text = "Downloading";
+                    await DownloadFile(zipUrl, zipFilePath);
+                    await ExtractZipFile(zipFilePath, assetsFolderPath);
+                    File.Delete(zipFilePath);
+                    string fileContent = File.ReadAllText(verfilePath);
+                    await DisplayAlert("Updated", "Minty updated to version: " + fileContent, "OK");
+                    //GI_button.Text = "Launch";
+                }
+            }
+            else
+            {
+                //GI_button.Text = "Downloading";
+                Directory.CreateDirectory(assetsFolderPath);
+                await DownloadFile(zipUrl, zipFilePath);
+                await ExtractZipFile(zipFilePath, assetsFolderPath);
+                File.Delete(zipFilePath);
+                //GI_button.Text = "Launch";
+                LaunchExecutable(launcherFilePath);
+
+            }
+        }
+        private void LaunchExecutable(string exePath)
+        {
+            try
+            {
+                Process.Start(exePath);
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Error", $"Error launching executable: {ex.Message}", "OK");
+            }
+        }
+        #endregion
+        //download
+        #region
+        private async Task DownloadFile(string url, string destinationPath)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = await client.GetAsync(url);
+                    response.EnsureSuccessStatusCode();
+
+                    using (FileStream fileStream = new FileStream(destinationPath, FileMode.Create, FileAccess.Write, FileShare.None))
+                    {
+                        await response.Content.CopyToAsync(fileStream);
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                await DisplayAlert("Error", $"Error downloading file: {ex.Message}", "OK");
+            }
+            catch (IOException ex)
+            {
+                await DisplayAlert("Error", $"Error saving file: {ex.Message}", "OK");
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
+            }
+        }
+        #endregion
+        //extract
+        #region
+        private async Task ExtractZipFile(string zipFilePath, string extractionPath)
+        {
+            try
+            {
+                await Task.Run(() =>
+                {
+                    ZipFile.ExtractToDirectory(zipFilePath, extractionPath);
+                });
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", "Error while extracting the archive: " + ex.Message, "OK");
+            }
+        }
+        #endregion
+        //checkmitver
+        #region
+        private async Task<bool> CheckIfFilesAreSameAsync(string serverFileUrl, string localFilePath)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    string serverFileContent = await client.GetStringAsync(serverFileUrl);
+                    string localFileContent = await ReadFileAsync(localFilePath);
+
+                    return serverFileContent == localFileContent;
+                }
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", $"Error checking files: {ex.Message}", "OK");
+                return false;
+            }
+        }
+
+        private async Task<string> ReadFileAsync(string filePath)
+        {
+            using (StreamReader reader = new StreamReader(filePath))
+            {
+                return await reader.ReadToEndAsync();
+            }
+        }
+        #endregion
+    }
+}
