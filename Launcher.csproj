@@ -53,4 +53,21 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Resource Include="Resources\Images\about.png" />
+	  <Resource Include="Resources\Images\boosty.png" />
+	  <Resource Include="Resources\Images\mintylauncher.png" />
+      <Resource Include="Resources\Images\bgbg.png" />
+      <Resource Include="Resources\Images\exit.png" />
+      <Resource Include="Resources\Images\genshin.png" />
+      <Resource Include="Resources\Images\gi.png" />
+      <Resource Include="Resources\Images\honkai.png" />
+      <Resource Include="Resources\Images\mgi.png" />
+      <Resource Include="Resources\Images\minty.png" />
+      <Resource Include="Resources\Images\discord.png" />
+      <Resource Include="Resources\Images\youtube.png" />
+      <Resource Include="Resources\Images\boosty.png" />
+      <Resource Include="Resources\Images\github.png" />
+	</ItemGroup>
+
 </Project>

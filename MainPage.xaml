@@ -8,39 +8,46 @@
         <ResourceDictionary>
             <Style TargetType="Button" x:Key="NavBarStyle">
                 <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BorderWidth" Value="0" />
+            </Style>
+            <Style TargetType="Button" x:Key="StartStyle">
+                <Setter Property="BackgroundColor" Value="#FFEDCC32" />
                 <Setter Property="TextColor" Value="#333" />
                 <Setter Property="BorderWidth" Value="0" />
             </Style>
 
-    
         </ResourceDictionary>
     </ContentPage.Resources>
 
 
     <Grid>
-        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="600"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="1000" />
+        </Grid.ColumnDefinitions>
+        <BoxView Color="#153529" />
+        <Grid> 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="580"/>
             </Grid.RowDefinitions>
-            <StackLayout  Orientation="Horizontal" HorizontalOptions="FillAndExpand" >
-                <Button Text="MintyGI"  Style="{StaticResource NavBarStyle}"/>
-                <Button Text="MintyHSR" Style="{StaticResource NavBarStyle}"/>
-                <Button Text="About" Style="{StaticResource NavBarStyle}"/>
-        </StackLayout>
-                </Grid>
-                <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <StackLayout  Orientation="Vertical" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
-                <Button Style="{StaticResource NavBarStyle}"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="215" />
+            </Grid.ColumnDefinitions>
+            <BoxView Color="#255C47" Grid.Row="0" Grid.Column="1" />
+            <Image Source="mintylauncher.png" VerticalOptions="Start" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="175"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="175" />
+                </Grid.ColumnDefinitions>
                 
-            </StackLayout>
+            </Grid>
         </Grid>
-        <Grid>
-            <Button  VerticalOptions="End" HorizontalOptions="End" Text="Launch" Clicked="Launch_Clicked"/>
-        </Grid>
-        
     </Grid>
- 
+
 </ContentPage>
