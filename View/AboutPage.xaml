@@ -61,12 +61,12 @@
             <BoxView Color="#223c50" Grid.Row="0" Grid.Column="1" Opacity="0.5" />
             <StackLayout>
                 <Image Source="mintylauncher.png" VerticalOptions="Start" />
-                <Button Text="Genshin Impact" VerticalOptions="Start" Style="{StaticResource Navbarbutton}"/>
+                <Button Text="Genshin Impact" VerticalOptions="Start" Style="{StaticResource Navbarbutton}" Clicked="MainPage"/>
                 <Button Text="Honkai:SR" VerticalOptions="Start" Style="{StaticResource Navbarbutton}"/>
                 <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}" />
                 <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
                 <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
-                <Button Text="About" VerticalOptions="End" Style="{StaticResource Navbarbutton}" />
+                <Button Text="About" VerticalOptions="End" Style="{StaticResource Navbarbutton}" TextColor="Wheat"/>
             </StackLayout>
 
             <Grid HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,10" >

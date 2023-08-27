@@ -35,6 +35,10 @@ public partial class AboutPage : ContentPage
 		InitializeComponent();
 	}
     //buttons
+    private void MainPage(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new MainPage());
+    }
     #region
     private void Button_Click_Discord(object sender, EventArgs e)
     {
