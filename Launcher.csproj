@@ -50,6 +50,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
@@ -68,6 +69,12 @@
       <Resource Include="Resources\Images\youtube.png" />
       <Resource Include="Resources\Images\boosty.png" />
       <Resource Include="Resources\Images\github.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="View\AboutPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

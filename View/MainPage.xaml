@@ -8,7 +8,24 @@
         <ResourceDictionary>
             <Style TargetType="ImageButton" x:Key="ImageButtonstyle">
                 <Setter Property="BackgroundColor" Value="Transparent" />
-
+                <Setter Property="BorderWidth" Value="0" />
+            </Style>
+            <Style TargetType="Button" x:Key="Navbarbutton">
+                <Setter Property="BackgroundColor" Value="#152735"/>
+                <Setter Property="Opacity" Value="0.5" />
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="WidthRequest" Value="196"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Style.Triggers>
+                    <Trigger TargetType="Button" Property="IsEnabled" Value="True">
+                        <Setter Property="TextColor" Value="wheat" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="Button" x:Key="NavBarStyle">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="#333" />
                 <Setter Property="BorderWidth" Value="0" />
             </Style>
         </ResourceDictionary>
@@ -43,7 +60,16 @@
                 <ColumnDefinition  Width="215" />
             </Grid.ColumnDefinitions>
             <BoxView Color="#223c50" Grid.Row="0" Grid.Column="1" Opacity="0.5" />
-            <Image Source="mintylauncher.png" VerticalOptions="Start" />
+            <StackLayout>
+                <Image Source="mintylauncher.png" VerticalOptions="Start" />
+                <Button Text="Genshin Impact" VerticalOptions="Start" Style="{StaticResource Navbarbutton}"/>
+                <Button Text="Honkai:SR" VerticalOptions="Start" Style="{StaticResource Navbarbutton}"/>
+                <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}" />
+                <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
+                <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
+                <Button Text="Honkai:SR" VerticalOptions="End" Style="{StaticResource Navbarbutton}"/>
+            </StackLayout>
+            
             <Grid HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,10" >
                 <Grid.RowDefinitions>
                     <RowDefinition  />

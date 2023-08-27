@@ -9,15 +9,28 @@ using System.Diagnostics;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls.Xaml;
+using System;
+using System.Windows;
+using System.Windows.Input;
+using System.Net;
+using System.Net.Http;
+using System.IO;
+using System.Threading.Tasks;
+using DiscordRPC;
+using Button = DiscordRPC.Button;
+using System.Security.Policy;
+using System.Threading;
+using System.Linq;
 #endregion
 namespace Launcher
 {
     public partial class MainPage : ContentPage
     {
-
+        
         public MainPage()
         {
             InitializeComponent();
+            DiscordRPC();
             NavigationPage.SetHasNavigationBar(this, false);
         }
         //launch
@@ -204,6 +217,55 @@ namespace Launcher
                 UseShellExecute = true
             });
         }
-           #endregion
+        #endregion
+        //RPC
+        #region
+        private static readonly DiscordRpcClient client = new DiscordRpcClient("1112360491847778344");
+
+        public static void InitRPC()
+        {
+            client.OnReady += (sender, e) => { };
+
+            client.OnPresenceUpdate += (sender, e) => { };
+
+            client.OnError += (sender, e) => { };
+
+            client.Initialize();
         }
+
+        public static void UpdateRPC()
+        {
+            var presence = new RichPresence()
+            {
+                State = "Minty",
+                Details = "Hacking MHY <333",
+
+                Assets = new Assets()
+                {
+                    LargeImageKey = "idol",
+                    SmallImageKey = "gensh",
+                    SmallImageText = "Genshin Impact"
+                },
+                Buttons = new Button[]
+                {
+                    new Button()
+                    {
+                        Label = "Join",
+                        Url = "https://discord.gg/kindawindytoday"
+                    }
+                }
+            };
+            client.SetPresence(presence);
+            client.Invoke();
+        }
+
+        public static void DiscordRPC()
+        {
+            InitRPC();
+            UpdateRPC();
+        }
+
+
+        #endregion
+    }
 }
