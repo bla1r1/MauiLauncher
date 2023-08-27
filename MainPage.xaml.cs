@@ -161,5 +161,48 @@ namespace Launcher
             }
         }
         #endregion
+        //buttons
+        #region
+        private void Button_Click_Discord(object sender, EventArgs e)
+        {
+            string link = "https://discord.gg/CpGbZSHKcD";
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = link,
+                UseShellExecute = true
+            });
+        }
+
+        private void Button_Click_Git(object sender, EventArgs e)
+        {
+            string link = "https://github.com/kindawindytoday/Minty-Old";
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = link,
+                UseShellExecute = true
+            });
+        }
+
+        private void Button_Click_Boosty(object sender, EventArgs e)
+        {
+            string link = "https://boosty.to/kindawindytoday";
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = link,
+                UseShellExecute = true
+            });
+        }
+
+        private void Button_Click_Youtube(object sender, EventArgs e)
+        {
+            string link = "https://www.youtube.com/@KindaWindyToday";
+
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = link,
+                UseShellExecute = true
+            });
+        }
+        #endregion
     }
 }
