@@ -40,7 +40,6 @@ namespace Launcher
         {
             Navigation.PushAsync(new AboutPage());
         }
-        
         //launch
         #region
         private async void Launch_Clicked(object sender, EventArgs e)
@@ -238,7 +237,7 @@ namespace Launcher
 
             client.OnError += (sender, e) => { };
 
-            
+            client.Initialize();
         }
 
         public static void UpdateRPC()

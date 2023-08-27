@@ -12,78 +12,77 @@
             <Style TargetType="Button" x:Key="Navbarbutton">
                 <Setter Property="BackgroundColor" Value="#152735"/>
                 <Setter Property="Opacity" Value="0.5" />
-                <Setter Property="FontSize" Value="25"/>
-                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="22"/>
+                <Setter Property="TextColor" Value="Wheat"/>
                 <Setter Property="WidthRequest" Value="196"/>
                 <Setter Property="HeightRequest" Value="50"/>
-                <Style.Triggers>
-                    <Trigger TargetType="Button" Property="IsEnabled" Value="True">
-                        <Setter Property="TextColor" Value="wheat" />
-                    </Trigger>
-                </Style.Triggers>
             </Style>
             <Style TargetType="Button" x:Key="NavBarStyle">
                 <Setter Property="BackgroundColor" Value="Transparent" />
                 <Setter Property="TextColor" Value="#333" />
                 <Setter Property="BorderWidth" Value="0" />
             </Style>
+
         </ResourceDictionary>
     </ContentPage.Resources>
 
-
     <Grid>
         <Image Source="bgbg.png" />
-
         <Grid.RowDefinitions>
             <RowDefinition Height="600"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition  Width="1000" />
         </Grid.ColumnDefinitions>
-        <BoxView Color="#152735" Opacity="0.5" />
-        <Grid Margin="0,55,0,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="420"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="244" />
-                <ColumnDefinition Width="750" />
-            </Grid.ColumnDefinitions>
-            <Image Source="GI.png" Grid.Column="1" Aspect="AspectFill" />
-        </Grid>
+        <BoxView Color="#152735" Opacity="0.3" />
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="580"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition  Width="215" />
-            </Grid.ColumnDefinitions>
-            <BoxView Color="#223c50" Grid.Row="0" Grid.Column="1" Opacity="0.5" />
             <StackLayout>
-                <Image Source="mintylauncher.png" VerticalOptions="Start" />
-                <Button Text="Genshin Impact" VerticalOptions="Start" Style="{StaticResource Navbarbutton}" Clicked="MainPage"/>
-                <Button Text="Honkai:SR" VerticalOptions="Start" Style="{StaticResource Navbarbutton}"/>
-                <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}" />
-                <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
-                <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
-                <Button Text="About" VerticalOptions="End" Style="{StaticResource Navbarbutton}" TextColor="Wheat"/>
+                <Image Source="kwt.png" WidthRequest="141" HeightRequest="141" Margin="200,0,15,0"/>
+                <Label WidthRequest="700"  Margin="300,0,15,0" Text="This launcher is designed for Genshin Impact by " FontSize="25" LineBreakMode="NoWrap"/>
+                <Label WidthRequest="700" Margin="300,0,15,0" Text="KindaWindaToday and Honkai: Star Rail cheat Minty" FontSize="25" LineBreakMode="NoWrap"/>
+                <Label WidthRequest="700"   FontSize="25" LineBreakMode="NoWrap"/>
+                <Label WidthRequest="700"   FontSize="25" LineBreakMode="NoWrap"/>
+                <Label WidthRequest="700"  Margin="300,0,15,0" Text="Minty developers: hoyokprotect, moistcrafter" FontSize="25" LineBreakMode="NoWrap"/>
+                <Label WidthRequest="700" Margin="300,0,15,0" Text="Launcher developers: sad_akulka, bla1r_" FontSize="25" LineBreakMode="NoWrap"/>
+                <Label WidthRequest="700" Margin="300,0,15,0" Text="Launcher design: AlexArts" FontSize="25" LineBreakMode="NoWrap"/>
+                <Label WidthRequest="700" Margin="300,0,15,0" Text="Special thanks: etoshinya" FontSize="25" LineBreakMode="NoWrap"/>
             </StackLayout>
 
-            <Grid HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,10" >
+           
+            <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition  />
-                    <RowDefinition Height="175"/>
+                    <RowDefinition Height="580"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="175" />
-                    <ColumnDefinition   />
+                    <ColumnDefinition  Width="215" />
                 </Grid.ColumnDefinitions>
-                <ImageButton Source="github.png" HorizontalOptions="Start" VerticalOptions="StartAndExpand" WidthRequest="85" HeightRequest="85" Grid.Row="1" Clicked="Button_Click_Git" Style="{StaticResource ImageButtonstyle}"/>
-                <ImageButton Source="boosty.png" HorizontalOptions="End" VerticalOptions="StartAndExpand" WidthRequest="85" HeightRequest="85" Grid.Row="1" Clicked="Button_Click_Boosty" Style="{StaticResource ImageButtonstyle}"/>
-                <ImageButton Source="youtube.png"  HorizontalOptions="End" VerticalOptions="EndAndExpand"  WidthRequest="85" HeightRequest="85"  Grid.Row="1" Clicked="Button_Click_Youtube" Style="{StaticResource ImageButtonstyle}" />
-                <ImageButton Source="discord.png" HorizontalOptions="Start" VerticalOptions="EndAndExpand" WidthRequest="85" HeightRequest="85" Grid.Row="1" Clicked="Button_Click_Discord" Style="{StaticResource ImageButtonstyle}"/>
+                <BoxView Color="#223c50" Grid.Row="0" Grid.Column="1" Opacity="0.8" />
+                <StackLayout>
+                    <Image Source="mintylauncher.png" VerticalOptions="Start" />
+                    <Button Text="Genshin Impact" VerticalOptions="Start" Style="{StaticResource Navbarbutton}" TextColor="White" Clicked="MainPage"/>
+                    <Button Text="Honkai:SR" VerticalOptions="Start" Style="{StaticResource Navbarbutton}"/>
+                    <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}" />
+                    <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
+                    <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
+                    <Button Text="About" VerticalOptions="End" Style="{StaticResource Navbarbutton}"  FontSize="25" />
+                </StackLayout>
+
+                <Grid HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,10" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition  />
+                        <RowDefinition Height="175"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="175" />
+                        <ColumnDefinition   />
+                    </Grid.ColumnDefinitions>
+                    <ImageButton Source="github.png" HorizontalOptions="Start" VerticalOptions="StartAndExpand" WidthRequest="85" HeightRequest="85" Grid.Row="1" Clicked="Button_Click_Git" Style="{StaticResource ImageButtonstyle}"/>
+                    <ImageButton Source="boosty.png" HorizontalOptions="End" VerticalOptions="StartAndExpand" WidthRequest="85" HeightRequest="85" Grid.Row="1" Clicked="Button_Click_Boosty" Style="{StaticResource ImageButtonstyle}"/>
+                    <ImageButton Source="youtube.png"  HorizontalOptions="End" VerticalOptions="EndAndExpand"  WidthRequest="85" HeightRequest="85"  Grid.Row="1" Clicked="Button_Click_Youtube" Style="{StaticResource ImageButtonstyle}" />
+                    <ImageButton Source="discord.png" HorizontalOptions="Start" VerticalOptions="EndAndExpand" WidthRequest="85" HeightRequest="85" Grid.Row="1" Clicked="Button_Click_Discord" Style="{StaticResource ImageButtonstyle}"/>
 
 
+                </Grid>
             </Grid>
         </Grid>
     </Grid>
