@@ -4,7 +4,9 @@
              xmlns:local="clr-namespace:Launcher"
              x:Class="Launcher.MainPage"  
              WidthRequest="1000"
-             HeightRequest="600">
+             HeightRequest="600"
+             Shell.FlyoutBehavior="Disabled"
+              Shell.NavBarIsVisible="False">
     
     <ContentPage.Resources>
         <ResourceDictionary>

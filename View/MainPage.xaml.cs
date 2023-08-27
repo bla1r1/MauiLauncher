@@ -23,8 +23,7 @@ using System.Threading;
 using System.Linq;
 using Launcher.View;
 using Microsoft.Maui.Controls;
-
-
+using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
 #endregion
 namespace Launcher
 {
@@ -34,7 +33,7 @@ namespace Launcher
         public MainPage()
         {
             InitializeComponent();
-            //DiscordRPC();
+            DiscordRPC();
             NavigationPage.SetHasNavigationBar(this, false);
         }
         private void AboutPage(object sender, EventArgs e)
@@ -238,7 +237,7 @@ namespace Launcher
 
             client.OnError += (sender, e) => { };
 
-            client.Initialize();
+            
         }
 
         public static void UpdateRPC()
