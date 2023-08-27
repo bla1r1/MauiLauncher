@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using Microsoft.Maui.Controls;
 using Microsoft.Maui;
+using Microsoft.Maui.Controls.Xaml;
 #endregion
 namespace Launcher
 {
@@ -203,6 +204,6 @@ namespace Launcher
                 UseShellExecute = true
             });
         }
-        #endregion
-    }
+           #endregion
+        }
 }
