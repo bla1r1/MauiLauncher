@@ -33,13 +33,14 @@ namespace Launcher
         public MainPage()
         {
             InitializeComponent();
-            DiscordRPC();
+            //DiscordRPC();
             NavigationPage.SetHasNavigationBar(this, false);
         }
         private void AboutPage(object sender, EventArgs e)
         {
             Navigation.PushAsync(new AboutPage());
         }
+        
         //launch
         #region
         private async void Launch_Clicked(object sender, EventArgs e)

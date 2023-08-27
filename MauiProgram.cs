@@ -4,6 +4,7 @@ using Microsoft.Maui.LifecycleEvents;
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Windows.Graphics;
+using Windows.UI.WindowManagement;
 #endif
 
 namespace Launcher
@@ -27,22 +28,26 @@ namespace Launcher
                 {
                     wndLifeCycleBuilder.OnWindowCreated(window =>
                     {
-                        window.ExtendsContentIntoTitleBar = false; /*This is important to prevent your app content extends into the title bar area.*/
-                        IntPtr nativeWindowHandle = WinRT.Interop.WindowNative.GetWindowHandle(window);
-                        WindowId win32WindowsId = Win32Interop.GetWindowIdFromWindow(nativeWindowHandle);
-                        AppWindow winuiAppWindow = AppWindow.GetFromWindowId(win32WindowsId);
-                        if (winuiAppWindow.Presenter is OverlappedPresenter p)
+                        window.ExtendsContentIntoTitleBar = false;
+                        var handle = WinRT.Interop.WindowNative.GetWindowHandle(window);
+                        var id = Microsoft.UI.Win32Interop.GetWindowIdFromWindow(handle);
+                        var appWindow = Microsoft.UI.Windowing.AppWindow.GetFromWindowId(id);
+                        if (appWindow.Presenter is OverlappedPresenter pre)
                         {
-                            p.SetBorderAndTitleBar(false, false);
+                            pre.IsMaximizable = false;
+                            pre.IsResizable = false;
+                            pre.IsMinimizable = false;
+                            pre.SetBorderAndTitleBar(false, false);
                         }
                         const int width = 1000;
                         const int height = 600;
-                        /*I suggest you to use MoveAndResize instead of Resize because this way you make sure to center the window*/
-                        winuiAppWindow.MoveAndResize(new RectInt32(1920 / 2 - width / 2, 1080 / 2 - height / 2, width, height));
+                        appWindow.MoveAndResize(new RectInt32(1000 / 2 - width / 2, 600 / 2 - height / 2, width, height));
+                        
                     });
                 });
             });
 #endif
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
