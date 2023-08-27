@@ -52,6 +52,7 @@
 	<ItemGroup>
 		<PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="PresentationFramework" Version="4.6.0" />
 	</ItemGroup>
 
 	<ItemGroup>

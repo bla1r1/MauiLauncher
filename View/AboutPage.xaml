@@ -2,11 +2,89 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Launcher.View.AboutPage"
-             Title="AboutPage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ImageButton" x:Key="ImageButtonstyle">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="BorderWidth" Value="0" />
+            </Style>
+            <Style TargetType="Button" x:Key="Navbarbutton">
+                <Setter Property="BackgroundColor" Value="#152735"/>
+                <Setter Property="Opacity" Value="0.5" />
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="WidthRequest" Value="196"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Style.Triggers>
+                    <Trigger TargetType="Button" Property="IsEnabled" Value="True">
+                        <Setter Property="TextColor" Value="wheat" />
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="Button" x:Key="NavBarStyle">
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="TextColor" Value="#333" />
+                <Setter Property="BorderWidth" Value="0" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <Grid>
+        <Image Source="bgbg.png" />
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="600"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="1000" />
+        </Grid.ColumnDefinitions>
+        <BoxView Color="#152735" Opacity="0.5" />
+        <Grid Margin="0,55,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="420"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="244" />
+                <ColumnDefinition Width="750" />
+            </Grid.ColumnDefinitions>
+            <Image Source="GI.png" Grid.Column="1" Aspect="AspectFill" />
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="580"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition  Width="215" />
+            </Grid.ColumnDefinitions>
+            <BoxView Color="#223c50" Grid.Row="0" Grid.Column="1" Opacity="0.5" />
+            <StackLayout>
+                <Image Source="mintylauncher.png" VerticalOptions="Start" />
+                <Button Text="Genshin Impact" VerticalOptions="Start" Style="{StaticResource Navbarbutton}"/>
+                <Button Text="Honkai:SR" VerticalOptions="Start" Style="{StaticResource Navbarbutton}"/>
+                <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}" />
+                <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
+                <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
+                <Button Text="About" VerticalOptions="End" Style="{StaticResource Navbarbutton}" />
+            </StackLayout>
+
+            <Grid HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,10" >
+                <Grid.RowDefinitions>
+                    <RowDefinition  />
+                    <RowDefinition Height="175"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="175" />
+                    <ColumnDefinition   />
+                </Grid.ColumnDefinitions>
+                <ImageButton Source="github.png" HorizontalOptions="Start" VerticalOptions="StartAndExpand" WidthRequest="85" HeightRequest="85" Grid.Row="1" Clicked="Button_Click_Git" Style="{StaticResource ImageButtonstyle}"/>
+                <ImageButton Source="boosty.png" HorizontalOptions="End" VerticalOptions="StartAndExpand" WidthRequest="85" HeightRequest="85" Grid.Row="1" Clicked="Button_Click_Boosty" Style="{StaticResource ImageButtonstyle}"/>
+                <ImageButton Source="youtube.png"  HorizontalOptions="End" VerticalOptions="EndAndExpand"  WidthRequest="85" HeightRequest="85"  Grid.Row="1" Clicked="Button_Click_Youtube" Style="{StaticResource ImageButtonstyle}" />
+                <ImageButton Source="discord.png" HorizontalOptions="Start" VerticalOptions="EndAndExpand" WidthRequest="85" HeightRequest="85" Grid.Row="1" Clicked="Button_Click_Discord" Style="{StaticResource ImageButtonstyle}"/>
+
+
+            </Grid>
+        </Grid>
+    </Grid>
 </ContentPage>

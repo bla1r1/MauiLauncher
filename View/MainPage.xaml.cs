@@ -21,6 +21,10 @@ using Button = DiscordRPC.Button;
 using System.Security.Policy;
 using System.Threading;
 using System.Linq;
+using Launcher.View;
+using Microsoft.Maui.Controls;
+
+
 #endregion
 namespace Launcher
 {
@@ -30,8 +34,12 @@ namespace Launcher
         public MainPage()
         {
             InitializeComponent();
-            DiscordRPC();
+            //DiscordRPC();
             NavigationPage.SetHasNavigationBar(this, false);
+        }
+        private void AboutPage(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AboutPage());
         }
         //launch
         #region
