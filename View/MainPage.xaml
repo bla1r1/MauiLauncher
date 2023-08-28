@@ -39,7 +39,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition  Width="1000" />
         </Grid.ColumnDefinitions>
-        <BoxView Color="#152735" Opacity="0.3" />
+        <BoxView Color="#152735" Opacity="0.3"/>
 
         <Grid Margin="110,0,0,0">
             <Grid.RowDefinitions>
@@ -60,7 +60,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition  Width="215" />
             </Grid.ColumnDefinitions>
-            <BoxView Color="#223c50" Grid.Row="0" Grid.Column="1" Opacity="0.8" />
+            <BoxView Color="#223c50" Grid.Row="0" Grid.Column="1" Opacity="0.8" CornerRadius="10" />
             <StackLayout>
                 <Image Source="mintylauncher.png" VerticalOptions="Start" />
                 <Button Text="Genshin Impact" VerticalOptions="Start" Style="{StaticResource Navbarbutton}"  TextColor="White"/>
