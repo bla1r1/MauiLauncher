@@ -2,12 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Launcher"
+             xmlns:tb="using:H.NotifyIcon"
              x:Class="Launcher.MainPage"  
              WidthRequest="1000"
              HeightRequest="600"
              Shell.FlyoutBehavior="Disabled"
               Shell.NavBarIsVisible="False">
-    
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="ImageButton" x:Key="ImageButtonstyle">
@@ -27,12 +27,11 @@
                 <Setter Property="TextColor" Value="#333" />
                 <Setter Property="BorderWidth" Value="0" />
             </Style>
-           
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    
-        <Grid>
+
+    <Grid>
         <Image Source="bgbg.png" />
         <Grid.RowDefinitions>
             <RowDefinition Height="600"/>
@@ -54,7 +53,7 @@
         </Grid>
 
         <Button VerticalOptions="End" Margin="200,520,0,20" Text="Launch" BackgroundColor="#315779" WidthRequest="200" HeightRequest="65" FontSize="30" TextColor="White" Opacity="0.8" Clicked="Launch_Clicked"/>
-        <Grid> 
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="580"/>
             </Grid.RowDefinitions>
@@ -71,7 +70,7 @@
                 <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
                 <Button Text="About" VerticalOptions="End" Style="{StaticResource Navbarbutton}" Clicked="AboutPage" FontSize="25"/>
             </StackLayout>
-            
+
             <Grid HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,10" >
                 <Grid.RowDefinitions>
                     <RowDefinition  />
@@ -89,7 +88,6 @@
 
             </Grid>
         </Grid>
-            
+
     </Grid>
-    
 </ContentPage>
