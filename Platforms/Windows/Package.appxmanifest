@@ -45,9 +45,7 @@
   <Capabilities>
     <rescap:Capability Name="runFullTrust" />
     <rescap:Capability Name="allowElevation" />
-    <Capability Name="internetClient"/>
-    <iot:Capability Name="systemManagement"/>
-    <Capability Name="privateNetworkClientServer"/>
+
   </Capabilities>
 
 </Package>
