@@ -16,8 +16,8 @@ using System.Net;
 using System.Net.Http;
 using System.IO;
 using System.Threading.Tasks;
-//using DiscordRPC;
-//using Button = DiscordRPC.Button;
+using DiscordRPC;
+using Button = DiscordRPC.Button;
 using System.Security.Policy;
 using System.Threading;
 using System.Linq;
@@ -63,6 +63,7 @@ namespace Launcher
                     {
                         //GI_button.Text = "Launch";
                         LaunchExecutable(launcherFilePath);
+                        DiscordRPC();
 
                     }
                 }
@@ -79,6 +80,7 @@ namespace Launcher
                     string fileContent = File.ReadAllText(verfilePath);
                     await DisplayAlert("Updated", "Minty updated to version: " + fileContent, "OK");
                     //GI_button.Text = "Launch";
+                    DiscordRPC();
                 }
             }
             else
@@ -224,6 +226,55 @@ namespace Launcher
                 UseShellExecute = true
             });
         }
+        #endregion
+        //RPC
+        #region
+        private static readonly DiscordRpcClient client = new DiscordRpcClient("1112360491847778344");
+
+        public static void InitRPC()
+        {
+            client.OnReady += (sender, e) => { };
+
+            client.OnPresenceUpdate += (sender, e) => { };
+
+            client.OnError += (sender, e) => { };
+
+            client.Initialize();
+        }
+
+        public static void UpdateRPC()
+        {
+            var presence = new RichPresence()
+            {
+                State = "Minty",
+                Details = "Hacking MHY <333",
+
+                Assets = new Assets()
+                {
+                    LargeImageKey = "idol",
+                    SmallImageKey = "gensh",
+                    SmallImageText = "Genshin Impact"
+                },
+                Buttons = new Button[]
+                {
+                    new Button()
+                    {
+                        Label = "Join",
+                        Url = "https://discord.gg/kindawindytoday"
+                    }
+                }
+            };
+            client.SetPresence(presence);
+            client.Invoke();
+        }
+
+        public static void DiscordRPC()
+        {
+            InitRPC();
+            UpdateRPC();
+        }
+
+
         #endregion
     }
 }
