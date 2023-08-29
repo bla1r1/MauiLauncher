@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Launcher"
-             xmlns:tb="using:H.NotifyIcon"
+             xmlns:tb="https://notifyicon.com/"
+             
              x:Class="Launcher.MainPage"  
              WidthRequest="1000"
              HeightRequest="600"
@@ -32,6 +33,20 @@
 
 
     <Grid>
+        <tb:TaskbarIcon
+            IconSource="virus.png"
+            x:Name="TrayIcon"
+            LeftClickCommand="{Binding ShowHideWindowCommand}"
+            NoLeftClickDelay="True"
+            >
+            <FlyoutBase.ContextFlyout>
+                <MenuFlyout>
+                    <MenuFlyoutItem Command="{Binding ShowHideWindowCommand}" Text="Show/Hide Window" />
+                    <MenuFlyoutSeparator />
+                    <MenuFlyoutItem Command="{Binding ExitApplicationCommand}" Text="Exit" />
+                </MenuFlyout>
+            </FlyoutBase.ContextFlyout>
+        </tb:TaskbarIcon>
         <Image Source="bgbg.png" />
         <Grid.RowDefinitions>
             <RowDefinition Height="600"/>
@@ -41,6 +56,7 @@
         </Grid.ColumnDefinitions>
         <BoxView Color="#152735" Opacity="0.3"/>
 
+        
         <Grid Margin="110,0,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="420"/>
@@ -52,7 +68,7 @@
             <Image Source="MGI.png" VerticalOptions="StartAndExpand" WidthRequest="280" HeightRequest="56" Margin="240,0,0,0" />
         </Grid>
 
-        <Button VerticalOptions="End" Margin="200,520,0,20" Text="Launch" BackgroundColor="#315779" WidthRequest="200" HeightRequest="65" FontSize="30" TextColor="White" Opacity="0.8" Clicked="Launch_Clicked"/>
+        <Button VerticalOptions="End" x:Uid="GI_button" x:Name="GI_button" Margin="200,520,0,20" Text="Launch" BackgroundColor="#315779" WidthRequest="200" HeightRequest="65" FontSize="30" TextColor="White" Opacity="0.8" Clicked="Launch_Clicked"/>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="580"/>
@@ -60,15 +76,15 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition  Width="215" />
             </Grid.ColumnDefinitions>
-            <BoxView Color="#223c50" Grid.Row="0" Grid.Column="1" Opacity="0.8" CornerRadius="10" />
-            <StackLayout>
+            <BoxView Color="#223c50" Grid.Row="0" Grid.Column="1" Opacity="0.8" CornerRadius="10" Margin="10,10,0,0" />
+            <StackLayout HorizontalOptions="Center">
                 <Image Source="mintylauncher.png" VerticalOptions="Start" />
-                <Button Text="Genshin Impact" VerticalOptions="Start" Style="{StaticResource Navbarbutton}"  TextColor="White"/>
-                <Button Text="Honkai:SR" VerticalOptions="Start" Style="{StaticResource Navbarbutton}"/>
-                <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}" />
-                <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
-                <Button VerticalOptions="End" Style="{StaticResource NavBarStyle}"/>
-                <Button Text="About" VerticalOptions="End" Style="{StaticResource Navbarbutton}" Clicked="AboutPage" FontSize="25"/>
+                <Button Text="Genshin Impact" VerticalOptions="Start" Style="{StaticResource Navbarbutton}" TextColor="White" />
+                <Button Text="Honkai:SR" VerticalOptions="Start" Style="{StaticResource Navbarbutton}" />
+                <Button Style="{StaticResource NavBarStyle}" />
+                <Button Style="{StaticResource NavBarStyle}" />
+                <Button Style="{StaticResource NavBarStyle}" />
+                <Button Text="About" VerticalOptions="End" Style="{StaticResource Navbarbutton}" Clicked="AboutPage" FontSize="25" />
             </StackLayout>
 
             <Grid HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,10" >

@@ -43,9 +43,10 @@
                 <Label WidthRequest="700"   FontSize="25" LineBreakMode="NoWrap"/>
                 <Label WidthRequest="700"   FontSize="25" LineBreakMode="NoWrap"/>
                 <Label WidthRequest="700"  Margin="300,0,15,0" Text="Minty developers: hoyokprotect, moistcrafter" FontSize="25" LineBreakMode="NoWrap"/>
-                <Label WidthRequest="700" Margin="300,0,15,0" Text="Launcher developers: sad_akulka, bla1r_" FontSize="25" LineBreakMode="NoWrap"/>
+                <Label WidthRequest="700" Margin="300,0,15,0" Text="Launcher developers: bla1r_" FontSize="25" LineBreakMode="NoWrap"/>
                 <Label WidthRequest="700" Margin="300,0,15,0" Text="Launcher design: AlexArts" FontSize="25" LineBreakMode="NoWrap"/>
                 <Label WidthRequest="700" Margin="300,0,15,0" Text="Special thanks: etoshinya" FontSize="25" LineBreakMode="NoWrap"/>
+                <Label WidthRequest="700" Margin="300,0,15,0" Text="Press F to: sad_akulka(He retired from programming)" FontSize="25" LineBreakMode="NoWrap"/>
             </StackLayout>
 
            
