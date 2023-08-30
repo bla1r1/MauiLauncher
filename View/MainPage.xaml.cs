@@ -3,30 +3,16 @@
 using System;
 using System.IO;
 using System.IO.Compression;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Diagnostics;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls.Xaml;
-using System;
-using System.Windows;
-using System.Windows.Input;
 using System.Net;
-using System.Net.Http;
-using System.IO;
-using System.Threading.Tasks;
 using DiscordRPC;
 using Button = DiscordRPC.Button;
-using System.Security.Policy;
-using System.Threading;
-using System.Linq;
 using Launcher.View;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.PlatformConfiguration.WindowsSpecific;
-using H.NotifyIcon.Core;
 using H.NotifyIcon;
-using Microsoft.UI.Xaml;
+using Microsoft.Maui.Controls;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
+
 
 #endregion
 namespace Launcher
@@ -37,80 +23,8 @@ namespace Launcher
         public MainPage()
         {
             InitializeComponent();
-            //DiscordRPC();
-            checkversion();
-            NavigationPage.SetHasNavigationBar(this, false);
+            DiscordManager.DiscordRPC();
         }
-
-        //checkversion
-        #region
-        public async void checkversion()
-        {
-            string versionUrl = "https://raw.githubusercontent.com/rusya222/LauncherVer/main/LaunchVersion";
-            string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string mintyFolderPath = System.IO.Path.Combine(appDataFolder, "minty");
-            string assetsFolderPath = System.IO.Path.Combine(mintyFolderPath, "MintyGI");
-            string launcherFilePath = System.IO.Path.Combine(assetsFolderPath, "Launcher.exe");
-            string dllFilePath = System.IO.Path.Combine(assetsFolderPath, "minty.dll");
-            string zipFilePath = System.IO.Path.Combine(assetsFolderPath, "minty .zip");
-            string verfilePath = System.IO.Path.Combine(assetsFolderPath, "version.txt");
-            string updateUrl = "https://github.com/rusya222/LauncherVer/releases/download/1.0/update.exe";
-            string tempFolderPath = System.IO.Path.GetTempPath();
-            string updateFilePath = System.IO.Path.Combine(tempFolderPath, "update.exe");
-            try
-            {
-                string versionText = await DownloadVersionText(versionUrl);
-
-                if (versionText != null)
-                {
-                    double latestVersion = .0;
-
-                    if (!Double.TryParse(versionText, out latestVersion))
-                    {
-                       
-                        await DisplayAlert("Error","Unable to parse: " + versionText, "OK");
-                        return;
-                    }
-
-                    double currentVersion = 1.11;
-
-                    if (currentVersion < latestVersion)
-                    {
-                        File.Delete(verfilePath);
-                        File.Delete(launcherFilePath);
-                        File.Delete(dllFilePath);
-
-                        await DownloadFile(updateUrl, updateFilePath);
-                        await Task.Delay(2000);
-                        LaunchExecutable(updateFilePath);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", $"Error retrieving launcher version: {ex.Message}", "OK");
-
-            }
-        }
-        public async Task<string> DownloadVersionText(string url)
-        {
-            using (HttpClient client = new HttpClient())
-            {
-                HttpResponseMessage response = await client.GetAsync(url);
-                response.EnsureSuccessStatusCode();
-
-                if (response.StatusCode == HttpStatusCode.NotFound)
-                {
-                    
-                    await DisplayAlert("Error", $"Unable to connect to the web server.", "OK");
-                    return null;
-                }
-
-                string versionText = await response.Content.ReadAsStringAsync();
-                return versionText;
-            }
-        }
-        #endregion
         //aboutpage
         #region
         private void AboutPage(object sender, EventArgs e)
@@ -134,54 +48,75 @@ namespace Launcher
             string dllFilePath = Path.Combine(assetsFolderPath, "minty.dll");
             string zipFilePath = Path.Combine(assetsFolderPath, "minty.zip");
             string verfilePath = Path.Combine(assetsFolderPath, "version.txt");
+            string tempFolderPath = System.IO.Path.GetTempPath();
+            string updateFilePath = System.IO.Path.Combine(tempFolderPath, "update.exe");
             string serverFileUrl = "https://github.com/rusya222/LauncherVer/releases/download/1.0/version.txt";
             string zipUrl = "https://github.com/rusya222/LauncherVer/releases/download/1.0/minty.zip";
-            Directory.CreateDirectory(assetsFolderPath);
-            Directory.CreateDirectory(assetsFolderPath);
-            if (File.Exists(verfilePath))
+            string updateUrl = "https://github.com/rusya222/LauncherVer/releases/download/1.0/update.exe";
+            string versionUrl = "https://raw.githubusercontent.com/rusya222/LauncherVer/main/LaunchVersion";
+            string versionText = await DownloadVersionText(versionUrl);
+            
+            if (versionText != null)
             {
-                bool filesAreSame = await CheckIfFilesAreSameAsync(serverFileUrl, verfilePath);
-                if (filesAreSame)
-                {
-                    if (File.Exists(launcherFilePath))
-                    {
-                        GI_button.Text = "Launch";
-                        LaunchExecutable(launcherFilePath);
-                        
-                        
+                double latestVersion = .0;
 
-                    }
+                if (!Double.TryParse(versionText, out latestVersion))
+                {
+                    await DisplayAlert("Error", "Unable to parse: " + versionText, "OK");
+                    return;
+                }
+
+                double currentVersion = 1.12;
+
+                if (currentVersion < latestVersion)
+                {
+                    await DisplayAlert("Update", $"launcher got an update.", "OK");
+                    await DownloadFile(updateUrl, updateFilePath);
+                    await Task.Delay(2000);
+                    LaunchExecutable(updateFilePath);
                 }
                 else
                 {
-                    File.Delete(verfilePath);
-                    File.Delete(launcherFilePath);
-                    File.Delete(dllFilePath);
-                    File.Delete(zipFilePath);
-                    GI_button.Text = "Downloading";
-                    await DownloadFile(zipUrl, zipFilePath);
-                    await ExtractZipFile(zipFilePath, assetsFolderPath);
-                    File.Delete(zipFilePath);
-                    string fileContent = File.ReadAllText(verfilePath);
-                    await DisplayAlert("Updated", "Minty updated to version: " + fileContent, "OK");
-                    GI_button.Text = "Launch";
-                    
-                   
+                    if (!File.Exists(verfilePath))
+                    {
+                        GI_button.Text = "Downloading";
+                        Directory.CreateDirectory(assetsFolderPath);
+                        Directory.CreateDirectory(mintyFolderPath);
+                        await DownloadFile(zipUrl, zipFilePath);
+                        await ExtractZipFile(zipFilePath, assetsFolderPath);
+                        File.Delete(zipFilePath);
+                        GI_button.Text = "Launch";
+                        LaunchExecutable(launcherFilePath);
+                        ShowHideWindow();
+                    }
+                    else
+                    {
+                        bool filesAreSame = await CheckIfFilesAreSameAsync(serverFileUrl, verfilePath);
+                        if (filesAreSame)
+                        {
+                            if (File.Exists(launcherFilePath))
+                            {
+                                GI_button.Text = "Launch";
+                                LaunchExecutable(launcherFilePath);
+                                ShowHideWindow();
+                            }
+                        }
+                        else
+                        {
+                            GI_button.Text = "Downloading";
+                            Directory.CreateDirectory(assetsFolderPath);
+                            Directory.CreateDirectory(mintyFolderPath);
+                            await DownloadFile(zipUrl, zipFilePath);
+                            await ExtractZipFile(zipFilePath, assetsFolderPath);
+                            string fileContent = File.ReadAllText(verfilePath);
+                            await DisplayAlert("Updated", "Minty updated to version: " + fileContent, "OK");
+                            GI_button.Text = "Launch";
+                            ShowHideWindow();
+                        }
+                    }
                 }
             }
-            else
-            {
-                GI_button.Text = "Downloading";
-                Directory.CreateDirectory(assetsFolderPath);
-                await DownloadFile(zipUrl, zipFilePath);
-                await ExtractZipFile(zipFilePath, assetsFolderPath);
-                File.Delete(zipFilePath);
-                GI_button.Text = "Launch";
-                LaunchExecutable(launcherFilePath);
-                
-                
-
-            }
+            
         }
         private void LaunchExecutable(string exePath)
         {
@@ -210,6 +145,7 @@ namespace Launcher
                     {
                         await response.Content.CopyToAsync(fileStream);
                     }
+
                 }
             }
             catch (HttpRequestException ex)
@@ -225,6 +161,7 @@ namespace Launcher
                 await DisplayAlert("Error", $"An unexpected error occurred: {ex.Message}", "OK");
             }
         }
+      
         #endregion
         //extract
         #region
@@ -269,6 +206,24 @@ namespace Launcher
             using (StreamReader reader = new StreamReader(filePath))
             {
                 return await reader.ReadToEndAsync();
+            }
+        }
+        public async Task<string> DownloadVersionText(string url)
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                HttpResponseMessage response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
+
+                if (response.StatusCode == HttpStatusCode.NotFound)
+                {
+
+                    await DisplayAlert("Error", $"Unable to connect to the web server.", "OK");
+                    return null;
+                }
+
+                string versionText = await response.Content.ReadAsStringAsync();
+                return versionText;
             }
         }
         #endregion
@@ -317,56 +272,68 @@ namespace Launcher
         #endregion
         //RPC
         #region
-        private static readonly DiscordRpcClient client = new DiscordRpcClient("1112360491847778344");
-
-        public static void InitRPC()
+        public static class DiscordManager
         {
-            client.OnReady += (sender, e) => { };
+            private static readonly DiscordRpcClient client = new DiscordRpcClient("1112360491847778344");
 
-            client.OnPresenceUpdate += (sender, e) => { };
-
-            client.OnError += (sender, e) => { };
-
-            client.Initialize();
-        }
-
-        public static void UpdateRPC()
-        {
-            var presence = new RichPresence()
+            public static void InitRPC()
             {
-                State = "Minty",
-                Details = "Hacking MHY <333",
+                client.Initialize();
+            }
 
-                Assets = new Assets()
+            public static void UpdateRPC()
+            {
+                var presence = new RichPresence()
                 {
-                    LargeImageKey = "idol",
-                    SmallImageKey = "gensh",
-                    SmallImageText = "Genshin Impact"
-                },
-                Buttons = new Button[]
-                {
-                    new Button()
+                    State = "Minty",
+                    Details = "Hacking MHY <333",
+
+                    Assets = new Assets()
                     {
-                        Label = "Join",
-                        Url = "https://discord.gg/kindawindytoday"
-                    }
+                        LargeImageKey = "idol",
+                        SmallImageKey = "gensh",
+                        SmallImageText = "Genshin Impact"
+                    },
+                    Buttons = new Button[]
+            {
+                new Button()
+                {
+                    Label = "Join",
+                    Url = "https://discord.gg/kindawindytoday"
                 }
-            };
-            client.SetPresence(presence);
-            client.Invoke();
+            }
+                };
+                client.SetPresence(presence);
+                client.Invoke();
+            }
+
+            public static void DiscordRPC()
+            {
+                
+                if (!client.IsInitialized)
+                {
+                    InitRPC();
+                }
+
+                UpdateRPC();
+            }
         }
 
-        public static void DiscordRPC()
-        {
-            InitRPC();
-            UpdateRPC();
-        }
+
+
+
+
+
+
+
+
+
 
 
         #endregion
         //tray
         #region
-        
+
         public void ShowHideWindow()
         {
             var window = Microsoft.Maui.Controls.Application.Current?.MainPage?.Window;
@@ -375,18 +342,26 @@ namespace Launcher
                 return;
             }
 
-            if (IsWindowVisible)
+            try
             {
-                window.Hide();
+                if (IsWindowVisible)
+                {
+                    window.Hide();
+                }
+                else
+                {
+                    window.Show();
+                }
+                IsWindowVisible = !IsWindowVisible;
             }
-            else
+            catch (Exception ex)
             {
-                window.Show();
+                
+                DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
             }
-            IsWindowVisible = !IsWindowVisible;
         }
 
-        
+
         public void ExitApplication()
         {
             Microsoft.Maui.Controls.Application.Current?.Quit();

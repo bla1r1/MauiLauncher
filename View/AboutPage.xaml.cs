@@ -37,7 +37,7 @@ public partial class AboutPage : ContentPage
     //buttons
     private void MainPage(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new MainPage());
+        Navigation.PopToRootAsync();
     }
     #region
     private void Button_Click_Discord(object sender, EventArgs e)

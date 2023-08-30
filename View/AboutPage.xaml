@@ -37,7 +37,7 @@
         <BoxView Color="#152735" Opacity="0.3" />
         <Grid>
             <StackLayout>
-                <Image Source="kwt.png" WidthRequest="141" HeightRequest="141" Margin="200,0,15,0"/>
+                <Image Source="kwt.png" WidthRequest="141" HeightRequest="141" Margin="200,10,0,0"/>
                 <Label WidthRequest="700"  Margin="300,0,15,0" Text="This launcher is designed for Genshin Impact by " FontSize="25" LineBreakMode="NoWrap"/>
                 <Label WidthRequest="700" Margin="300,0,15,0" Text="KindaWindaToday and Honkai: Star Rail cheat Minty" FontSize="25" LineBreakMode="NoWrap"/>
                 <Label WidthRequest="700"   FontSize="25" LineBreakMode="NoWrap"/>
@@ -57,7 +57,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition  Width="215" />
                 </Grid.ColumnDefinitions>
-                <BoxView Color="#223c50" Grid.Row="0" Grid.Column="1" Opacity="0.8"  CornerRadius="10" />
+                <BoxView Color="#223c50" Grid.Row="0" Grid.Column="1" Opacity="0.8" CornerRadius="10" Margin="10,10,0,0" />
                 <StackLayout>
                     <Image Source="mintylauncher.png" VerticalOptions="Start" />
                     <Button Text="Genshin Impact" VerticalOptions="Start" Style="{StaticResource Navbarbutton}" TextColor="White" Clicked="MainPage"/>

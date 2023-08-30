@@ -34,7 +34,7 @@
 
     <Grid>
         <tb:TaskbarIcon
-            IconSource="virus.png"
+            IconSource="virus.ico"
             x:Name="TrayIcon"
             LeftClickCommand="{Binding ShowHideWindowCommand}"
             NoLeftClickDelay="True"
@@ -65,7 +65,7 @@
                 <ColumnDefinition Width="280" />
                 <ColumnDefinition Width="750" />
             </Grid.ColumnDefinitions>
-            <Image Source="MGI.png" VerticalOptions="StartAndExpand" WidthRequest="280" HeightRequest="56" Margin="240,0,0,0" />
+            <Image Source="MGI.png" VerticalOptions="StartAndExpand" WidthRequest="280" HeightRequest="56" Margin="240,10,0,0" />
         </Grid>
 
         <Button VerticalOptions="End" x:Uid="GI_button" x:Name="GI_button" Margin="200,520,0,20" Text="Launch" BackgroundColor="#315779" WidthRequest="200" HeightRequest="65" FontSize="30" TextColor="White" Opacity="0.8" Clicked="Launch_Clicked"/>
