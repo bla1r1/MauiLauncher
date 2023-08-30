@@ -87,7 +87,7 @@ namespace Launcher
                         File.Delete(zipFilePath);
                         GI_button.Text = "Launch";
                         LaunchExecutable(launcherFilePath);
-                        ShowHideWindow();
+                        //ShowHideWindow();
                     }
                     else
                     {
@@ -98,7 +98,7 @@ namespace Launcher
                             {
                                 GI_button.Text = "Launch";
                                 LaunchExecutable(launcherFilePath);
-                                ShowHideWindow();
+                                //ShowHideWindow();
                             }
                         }
                         else
@@ -111,7 +111,7 @@ namespace Launcher
                             string fileContent = File.ReadAllText(verfilePath);
                             await DisplayAlert("Updated", "Minty updated to version: " + fileContent, "OK");
                             GI_button.Text = "Launch";
-                            ShowHideWindow();
+                            //ShowHideWindow();
                         }
                     }
                 }
@@ -322,34 +322,34 @@ namespace Launcher
         //tray
         #region
 
-        [RelayCommand]
-        public void ShowHideWindow()
-        {
-            var window = Application.Current?.MainPage?.Window;
+        //[RelayCommand]
+        //public void ShowHideWindow()
+        //{
+        //    var window = Application.Current?.MainPage?.Window;
 
-            if (window == null)
-            {
-                return;
-            }
+        //    if (window == null)
+        //    {
+        //        return;
+        //    }
 
-            if (IsWindowVisible)
-                if (IsWindowVisible)
-                {
-                    window.Hide();
-                }
-                else
-                {
-                    window.Show();
-                }
-            IsWindowVisible = !IsWindowVisible;
+        //    if (IsWindowVisible)
+        //        if (IsWindowVisible)
+        //        {
+        //            window.Hide();
+        //        }
+        //        else
+        //        {
+        //            window.Show();
+        //        }
+        //    IsWindowVisible = !IsWindowVisible;
 
-            IsWindowVisible = !IsWindowVisible;
-        }
-        [RelayCommand]
-        public void ExitApplication()
-        {
-            Application.Current?.Quit();
-        }
+        //    IsWindowVisible = !IsWindowVisible;
+        //}
+        //[RelayCommand]
+        //public void ExitApplication()
+        //{
+        //    Application.Current?.Quit();
+        //}
         #endregion
     }
 }

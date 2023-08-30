@@ -16,11 +16,12 @@
                 <Setter Property="BorderWidth" Value="0" />
             </Style>
             <Style TargetType="Button" x:Key="Navbarbutton">
+                <Setter Property="HorizontalOptions" Value="Center"/>
                 <Setter Property="BackgroundColor" Value="#152735"/>
                 <Setter Property="Opacity" Value="0.5" />
                 <Setter Property="FontSize" Value="22"/>
                 <Setter Property="TextColor" Value="Wheat"/>
-                <Setter Property="WidthRequest" Value="196"/>
+                <Setter Property="WidthRequest" Value="200"/>
                 <Setter Property="HeightRequest" Value="50"/>
             </Style>
             <Style TargetType="Button" x:Key="NavBarStyle">
@@ -33,7 +34,7 @@
 
 
     <Grid>
-        <tb:TaskbarIcon
+        <!--<tb:TaskbarIcon
             IconSource="virus.ico"
             x:Name="TrayIcon"
             LeftClickCommand="{Binding ShowHideWindowCommand}"
@@ -46,7 +47,7 @@
                     <MenuFlyoutItem Command="{Binding ExitApplicationCommand}" Text="Exit" />
                 </MenuFlyout>
             </FlyoutBase.ContextFlyout>
-        </tb:TaskbarIcon>
+        </tb:TaskbarIcon>-->
         <Image Source="bgbg.png" />
         <Grid.RowDefinitions>
             <RowDefinition Height="600"/>
@@ -79,12 +80,12 @@
             <BoxView Color="#223c50" Grid.Row="0" Grid.Column="1" Opacity="0.8" CornerRadius="10" Margin="10,10,0,0" />
             <StackLayout HorizontalOptions="Center">
                 <Image Source="mintylauncher.png" VerticalOptions="Start" />
-                <Button Text="Genshin Impact" VerticalOptions="Start" Style="{StaticResource Navbarbutton}" TextColor="White" />
-                <Button Text="Honkai:SR" VerticalOptions="Start" Style="{StaticResource Navbarbutton}" />
+                <Button Text="Genshin Impact" VerticalOptions="Start" Style="{StaticResource Navbarbutton}" TextColor="White" Margin="10,0,0,0"/>
+                <Button Text="Honkai:SR" VerticalOptions="Start" Style="{StaticResource Navbarbutton}" Margin="10,0,0,0" />
                 <Button Style="{StaticResource NavBarStyle}" />
                 <Button Style="{StaticResource NavBarStyle}" />
                 <Button Style="{StaticResource NavBarStyle}" />
-                <Button Text="About" VerticalOptions="End" Style="{StaticResource Navbarbutton}" Clicked="AboutPage" FontSize="25" />
+                <Button Text="About" VerticalOptions="End" Style="{StaticResource Navbarbutton}" Clicked="AboutPage" FontSize="25" Margin="10,0,0,0"/>
             </StackLayout>
 
             <Grid HorizontalOptions="Center" VerticalOptions="EndAndExpand" Margin="0,0,0,10" >
