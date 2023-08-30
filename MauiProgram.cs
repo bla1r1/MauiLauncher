@@ -1,5 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using H.NotifyIcon;
+using Microsoft.Extensions.Logging;
 using Microsoft.Maui.LifecycleEvents;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 #if WINDOWS
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
@@ -16,6 +18,8 @@ namespace Launcher
                 var builder = MauiApp.CreateBuilder();
                 builder
                     .UseMauiApp<App>()
+                     .UseSkiaSharp()
+                     .UseNotifyIcon()
                     .ConfigureFonts(fonts =>
                     {
                         fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

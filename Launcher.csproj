@@ -59,10 +59,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="DiscordRichPresence" Version="1.2.1.24" />
 		<PackageReference Include="H.NotifyIcon" Version="2.0.115" />
 		<PackageReference Include="H.NotifyIcon.Maui" Version="2.0.115" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="SkiaSharp" Version="2.88.5" />
+		<PackageReference Include="SkiaSharp.Views" Version="2.88.5" />
+		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.5" />
 	</ItemGroup>
 
 	<ItemGroup>

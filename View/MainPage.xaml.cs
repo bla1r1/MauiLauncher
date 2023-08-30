@@ -11,19 +11,19 @@ using Launcher.View;
 using H.NotifyIcon;
 using Microsoft.Maui.Controls;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-
-
-
+using CommunityToolkit.Mvvm.Input;
 #endregion
 namespace Launcher
 {
     public partial class MainPage : ContentPage
     {
+        
         private bool IsWindowVisible { get; set; } = true;
         public MainPage()
         {
             InitializeComponent();
             DiscordManager.DiscordRPC();
+            BindingContext = this;
         }
         //aboutpage
         #region
@@ -318,32 +318,21 @@ namespace Launcher
                 UpdateRPC();
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
         #endregion
         //tray
         #region
 
+        [RelayCommand]
         public void ShowHideWindow()
         {
-            var window = Microsoft.Maui.Controls.Application.Current?.MainPage?.Window;
+            var window = Application.Current?.MainPage?.Window;
+
             if (window == null)
             {
                 return;
             }
 
-            try
-            {
+            if (IsWindowVisible)
                 if (IsWindowVisible)
                 {
                     window.Hide();
@@ -352,19 +341,14 @@ namespace Launcher
                 {
                     window.Show();
                 }
-                IsWindowVisible = !IsWindowVisible;
-            }
-            catch (Exception ex)
-            {
-                
-                DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
-            }
+            IsWindowVisible = !IsWindowVisible;
+
+            IsWindowVisible = !IsWindowVisible;
         }
-
-
+        [RelayCommand]
         public void ExitApplication()
         {
-            Microsoft.Maui.Controls.Application.Current?.Quit();
+            Application.Current?.Quit();
         }
         #endregion
     }
